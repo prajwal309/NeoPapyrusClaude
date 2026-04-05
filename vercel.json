@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "functions": {
+    "api/**/*.js": {
+      "includeFiles": "books/**"
+    }
+  },
+  "routes": [
+    {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1"
+    },
+    {
+      "src": "/scripts/(.*)",
+      "dest": "/public/scripts/$1"
+    },
+    {
+      "src": "/logo/(.*)",
+      "dest": "/public/logo/$1"
+    },
+    {
+      "src": "/aboutUs\\.html",
+      "dest": "/public/aboutUs.html"
+    },
+    {
+      "src": "/book\\.html",
+      "dest": "/public/book.html"
+    },
+    {
+      "src": "/$",
+      "dest": "/public/index.html"
+    }
+  ]
+}

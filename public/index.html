@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NeoPapyrus Knowledge Tree</title>
+  <link rel="stylesheet" href="/css/landingPage.css"/>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="header-copy">
+        <h1>NeoPapyrus</h1>
+        <p class="subtitle">A living codex of ideas — explore the library as a ceremonial skill tree</p>
+      </div>
+
+      <nav class="header-actions">
+        <a class="pill" href="/aboutUs.html">About Us</a>
+        <a class="pill" href="/book.html?book=Exoplanets">Open Featured Book</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="legend">
+      <span><i class="dot" style="background:var(--gold); color:var(--gold);"></i> Foundations</span>
+      <span><i class="dot" style="background:var(--red); color:var(--red);"></i> Frontiers</span>
+      <span><i class="dot" style="background:var(--blue); color:var(--blue);"></i> Tools & Methods</span>
+      <span><i class="dot" style="background:#ff9b52; color:#ff9b52;"></i> Recommended</span>
+    </div>
+
+    <section class="tree-wrap">
+      <div class="cluster-title gold" style="left:8%; top:73%;">Foundations</div>
+      <div class="cluster-title red"  style="left:45%; top:8%;">Frontiers</div>
+      <div class="cluster-title blue" style="left:79%; top:73%;">Tools</div>
+
+      <div class="root-core" aria-hidden="true">
+        <div class="root-mark">
+          NeoPapyrus
+          <span>Knowledge Core</span>
+        </div>
+      </div>
+
+      <svg class="lines" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <g id="branches"></g>
+      </svg>
+
+      <div class="nodes" id="bookNodes"></div>
+    </section>
+
+    <section class="about">
+      <article class="panel">
+        <p style="font-style:italic; color:#b8d3e3; margin-top:0;">
+          Prajwal Niraula is a postdoctoral researcher and holds a PhD from the Department of Earth, Atmospheric, and Planetary Sciences at the Massachusetts Institute of Technology.
+        </p>
+
+        <h2>About NeoPapyrus</h2>
+        <p>
+          This design moves away from rectangular cards and toward a more iconic visual language: circular medallions, luminous paths, and a central knowledge core. Each book uses its own cover art as the node background, so the tree feels less like a sitemap and more like a world map of disciplines.
+        </p>
+        <p>
+          The result is closer to an Assassin’s Creed skill tree: ritual, symmetric, atmospheric, and unlock-like. The structure still comes from your book graph, but the experience feels more legendary and less utilitarian.
+        </p>
+      </article>
+
+      <aside class="panel">
+        <h3>Design Notes</h3>
+        <p>
+          Each node can have a cover image, subtitle, and recommendation badge. You can later add states like <code>locked</code>, <code>completed</code>, <code>featured</code>, or <code>new</code>.
+        </p>
+        <p>
+          For the best effect, make all cover images similar in aspect ratio and store them consistently as <code>/books/BookSlug/coverPage/frontpage.png</code>.
+        </p>
+        <p class="credits">© 2026 NeoPapyrus</p>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const ROOT = { x: 500, y: 500 };
+
+    const books = [
+      {
+        id: "physics",
+        title: "Classical Physics",
+        subtitle: "Motion, force, and the fabric of mechanics",
+        slug: "Physics",
+        cluster: "gold",
+        x: 310,
+        y: 600,
+        parent: "root",
+        background: "/books/Physics/coverPage/frontpage.png"
+      },
+      {
+        id: "calculus",
+        title: "Calculus",
+        subtitle: "Change written precisely",
+        slug: "Calculus",
+        cluster: "gold",
+        x: 300,
+        y: 890,
+        parent: "physics",
+        background: "/books/Calculus/coverPage/frontpage.png"
+      },
+      {
+        id: "statistics",
+        title: "Statistics",
+        subtitle: "Inference under uncertainty",
+        slug: "Statistics",
+        cluster: "gold",
+        x: 95,
+        y: 450,
+        parent: "root",
+        background: "/books/Statistics/coverPage/frontpage.png"
+      },
+    
+
+      {
+        id: "exoplanets",
+        title: "Exoplanets",
+        subtitle: "Worlds beyond our star",
+        slug: "Exoplanets",
+        cluster: "red",
+        x: 600,
+        y: 125,
+        parent: "root",
+        background: "/books/Exoplanets/coverPage/frontpage.png",
+        recommended: true
+      },
+      
+      {
+        id: "astronomy",
+        title: "Astronomy",
+        subtitle: "The broad sky of understanding",
+        slug: "Astronomy",
+        cluster: "red",
+        x: 392,
+        y: 250,
+        parent: "exoplanets",
+        background: "/books/Astronomy/coverPage/frontpage.png"
+      },
+    
+      {
+        id: "stars",
+        title: "Stellar Physics",
+        subtitle: "The engine behind every system",
+        slug: "StellarPhysics",
+        cluster: "red",
+        x: 830,
+        y: 104,
+        parent: "exoplanets",
+        background: "/books/StellarPhysics/coverPage/frontpage.png"
+      },
+
+      
+      {
+        id: "ml",
+        title: "Machine Learning",
+        subtitle: "Learning patterns from data",
+        slug: "MachineLearning",
+        cluster: "blue",
+        x: 788,
+        y: 610,
+        parent: "root",
+        background: "/books/MachineLearning/coverPage/frontpage.png"
+      },
+        {
+        id: "numerical",
+        title: "Numerical Methods",
+        subtitle: "Computation as approximation",
+        slug: "NumericalMethods",
+        cluster: "blue",
+        x: 650,
+        y: 900,
+        parent: "ml",
+        background: "/books/NumericalMethods/coverPage/frontpage.png"
+      },
+      {
+        id: "hpc",
+        title: "High-Performance Computing",
+        subtitle: "Scaling thought through machines",
+        slug: "HPC",
+        cluster: "blue",
+        x: 904,
+        y: 860,
+        parent: "ml",
+        background: "/books/HPC/coverPage/frontpage.png"
+      }
+    ];
+
+    const nodeMap = Object.fromEntries(books.map(book => [book.id, book]));
+
+    function getPoint(id) {
+      if (id === "root") return ROOT;
+      return nodeMap[id];
+    }
+
+    function createCurvedPath(from, to) {
+      const dx = to.x - from.x;
+      const dy = to.y - from.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const curveStrength = Math.min(120, Math.max(40, distance * 0.18));
+
+      const c1x = from.x + dx * 0.28;
+      const c1y = from.y + dy * 0.18 - Math.sign(dy || 1) * curveStrength * 0.24;
+
+      const c2x = from.x + dx * 0.72;
+      const c2y = from.y + dy * 0.82 + Math.sign(dy || 1) * curveStrength * 0.18;
+
+      return `M ${from.x} ${from.y} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${to.x} ${to.y}`;
+    }
+
+    function renderBranches() {
+      const svgGroup = document.getElementById("branches");
+
+      books.forEach(book => {
+        const from = getPoint(book.parent);
+        const to = { x: book.x, y: book.y };
+
+        const glowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        glowPath.setAttribute("class", `branch ${book.cluster}`);
+        glowPath.setAttribute("d", createCurvedPath(from, to));
+        glowPath.setAttribute("stroke-width", "5.5");
+        glowPath.setAttribute("opacity", "0.13");
+        svgGroup.appendChild(glowPath);
+
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("class", `branch ${book.cluster}`);
+        path.setAttribute("d", createCurvedPath(from, to));
+        svgGroup.appendChild(path);
+      });
+    }
+
+    function renderBooks() {
+      const nodes = document.getElementById("bookNodes");
+
+      books.forEach(book => {
+        const a = document.createElement("a");
+        a.className = "book-node";
+        a.href = `/book.html?book=${encodeURIComponent(book.slug)}`;
+        a.style.left = `${book.x / 10}%`;
+        a.style.top = `${book.y / 10}%`;
+        a.setAttribute("aria-label", book.title);
+
+        const ring = document.createElement("div");
+        ring.className = `node-ring ${book.cluster}`;
+
+        const glyph = document.createElement("div");
+        glyph.className = "node-glyph";
+
+        const image = document.createElement("div");
+        image.className = "node-image";
+        if (book.background) {
+          image.style.backgroundImage = `
+            linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.22)),
+            url('${book.background}')
+          `;
+        }
+
+        if (book.recommended) {
+          const badge = document.createElement("div");
+          badge.className = "fire-badge";
+          badge.innerHTML = `<span>🔥</span><span>Featured</span>`;
+          ring.appendChild(badge);
+        }
+
+        ring.appendChild(glyph);
+        ring.appendChild(image);
+
+        const label = document.createElement("div");
+        label.className = "node-label";
+
+        const title = document.createElement("div");
+        title.className = "node-title";
+        title.textContent = book.title;
+
+        const subtitle = document.createElement("div");
+        subtitle.className = "node-subtitle";
+        subtitle.textContent = book.subtitle || "";
+
+        label.appendChild(title);
+        label.appendChild(subtitle);
+
+        a.appendChild(ring);
+        a.appendChild(label);
+        nodes.appendChild(a);
+      });
+    }
+
+    renderBranches();
+    renderBooks();
+  </script>
+</body>
+</html>
